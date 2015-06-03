@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xml:lang="en" lang="en">
+    <head>
+        <title> Text Input Fields - Web Forms - Learning to Publish</title>
+        
+        <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+    </head>
+    <body>
+        <div id="container">
+            <form action="/">
+              Stake: <input type="text" name="stake"><br>
+              Back: <input type="text" name="back"><br>
+              Lay: <input type="text" name="lay"><br>
+              <input type="submit" value="Calculate">
+            </form>
+        </div>
+        
+        Laystake = <%= @laystake %><br>
+        Loss = <%= @loss %>
+    </body>
+</html>
