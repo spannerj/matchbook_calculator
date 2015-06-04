@@ -55,7 +55,7 @@ get '/' do
   @back = params[:back]
   @lay = params[:lay]
   if !params[:stake].nil? & !params[:back].nil? & !params[:lay].nil?
-      res_hash = calc_odds( @back.to_i, @stake.to_i, @lay.to_i )
+      res_hash = calc_odds( @back.to_f, @stake.to_f, @lay.to_f )
       @loss = res_hash['cost']
       @laystake = res_hash['stake']
   end
