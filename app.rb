@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'money'
 
 def calc_odds(back_odds, back_stake, lay_odds)
 
@@ -56,8 +57,15 @@ get '/' do
   @lay = params[:lay]
   if !params[:stake].nil? & !params[:back].nil? & !params[:lay].nil?
       res_hash = calc_odds( @back.to_f, @stake.to_f, @lay.to_f )
-      @loss = res_hash['cost']
-      @laystake = res_hash['stake']
+      
+      if res_hash['cost'] < 0
+        @loss = "-£%.2f" % (res_hash['cost'] * -1).to_f 
+      else
+        @loss = '£' + sprintf("%.02f", res_hash['cost'])    
+      end          
+      
+      
+      @laystake = '£' + sprintf("%.2f", res_hash['stake'])
   end
   erb :calc
 end

@@ -3,21 +3,55 @@
     <head>
         <title>Matchbook Calculator</title>
         
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+        
         <link rel="shortcut icon" href="/favicon.ico" />
         
         <meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
     </head>
+    
     <body>
-        <div id="container">
-            <form action="/">
-              Stake: <input type="text" name="stake"><br>
-              Back: <input type="text" name="back"><br>
-              Lay: <input type="text" name="lay"><br>
-              <input type="submit" value="Calculate">
-            </form>
+        <div class="container">
+          <form class="form-signin" action="/">
+            <h2 class="form-signin-heading">Enter your bet details</h2>
+            <label for="stake" class="sr-only">Stake</label>
+            <input type="number" name="stake" class="form-control" placeholder="Stake" step="any" required autofocus>
+            <label for="backOdds" class="sr-only">Back Odds</label>
+            <input type="number" name="back" class="form-control" placeholder="Back Odds" step="any" required>
+            <label for="layOdds" class="sr-only">Lay Odds</label>
+            <input type="number" name="lay" class="form-control" placeholder="Lay Odds" step="any" required>
+    
+            <button class="btn btn-lg btn-primary btn-block" data-target="#results" type="submit">Calculate</button>
+          </form>
+        </div> <!-- /container -->
+        <div class="container">
+            <label for="layStake">Lay Stake</label>
+            <input type="number" name="lay" class="form-control" placeholder="<%= @laystake %>">
+            <label for="loss">Loss</label>
+            <input type="number" name="loss" class="form-control" placeholder="<%= @loss %>">
         </div>
-        
-        Laystake = <%= @laystake %><br>
-        Loss = <%= @loss %>
     </body>
+    <script>
+        $(document).ready(function(){
+            /* Button which shows and hides div with a id of "post-details" */
+            $( ".toggle-visibility" ).click(function() {
+              
+              var target_selector = $(this).attr('data-target');
+              var $target = $( target_selector );
+              
+              if ($target.is(':hidden'))
+              {
+                $target.show();
+              }
+              else
+              {
+              	$target.hide();
+              }
+            });
+        });
+    </script>
 </html>
