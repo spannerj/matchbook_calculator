@@ -67,5 +67,6 @@ get '/' do
       
       @laystake = '£' + sprintf("%.2f", res_hash['stake'])
   end
+  puts @laystake
   erb :calc
 end

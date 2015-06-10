@@ -19,20 +19,23 @@
           <form class="form-signin" action="/">
             <h2 class="form-signin-heading">Enter your bet details</h2>
             <label for="stake" class="sr-only">Stake</label>
-            <input type="number" name="stake" class="form-control" placeholder="Stake" step="any" required autofocus>
+            <input type="number" name="stake" class="form-control" placeholder="Stake" value="<%= @stake %>" step="any" required autofocus>
             <label for="backOdds" class="sr-only">Back Odds</label>
-            <input type="number" name="back" class="form-control" placeholder="Back Odds" step="any" required>
+            <input type="number" name="back" class="form-control" placeholder="Back Odds" value="<%= @back %>" step="any" required>
             <label for="layOdds" class="sr-only">Lay Odds</label>
-            <input type="number" name="lay" class="form-control" placeholder="Lay Odds" step="any" required>
-    
+            <input type="number" name="lay" class="form-control" placeholder="Lay Odds" value="<%= @lay %>" step="any" required>
+            <br>
             <button class="btn btn-lg btn-primary btn-block" data-target="#results" type="submit">Calculate</button>
           </form>
         </div> <!-- /container -->
         <div class="container">
+            <br>
             <label for="layStake">Lay Stake</label>
-            <input type="number" name="lay" class="form-control" placeholder="<%= @laystake %>">
+            <input type="number" name="lay" class="form-control" value="<%= @laystake %>">
+            <br>
             <label for="loss">Loss</label>
-            <input type="number" name="loss" class="form-control" placeholder="<%= @loss %>">
+            <input type="number" name="loss" class="form-control" value="<%= @loss %>">
+            <br>
         </div>
     </body>
     <script>
