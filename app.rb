@@ -61,11 +61,17 @@ get '/' do
       if res_hash['cost'] < 0
         @loss = "-£%.2f" % (res_hash['cost'] * -1).to_f 
       else
-        @loss = '£' + sprintf("%.02f", res_hash['cost'])    
-      end          
+        @loss = '£' + sprintf("%.02f", res_hash['cost'])   
+      end    
       
+      if res_hash['undercost'] < 0
+        @underloss = "-£%.2f" % (res_hash['undercost'] * -1).to_f 
+      else
+        @underloss = '£' + sprintf("%.02f", res_hash['undercost']) 
+      end 
       
       @laystake = '£' + sprintf("%.2f", res_hash['stake'])
+      @underlaystake = '£' + sprintf("%.2f", res_hash['underlaystake'])
   end
   puts @laystake
   erb :calc
