@@ -19,64 +19,97 @@
             <div class="row">
                 <div class="col-xs-6 col-md-4"></div>
                 <div class="col-xs-6 col-md-4">
-                    <form class="form-signin" action="/">
-                        <h2 class="form-signin-heading">Enter your bet details</h2>
-                        <label for="stake" class="sr-only">Stake</label>
-                        <input type="number" name="stake" class="form-control" placeholder="Stake" value="<%= @stake %>" step="any" required autofocus>
-                        <label for="backOdds" class="sr-only">Back Odds</label>
-                        <input type="number" name="back" class="form-control" placeholder="Back Odds" value="<%= @back %>" step="any" required>
-                        <label for="layOdds" class="sr-only">Lay Odds</label>
-                        <input type="number" name="lay" class="form-control" placeholder="Lay Odds" value="<%= @lay %>" step="any" required>
-                        <br>
+                    <form class="form-horizontal" action="/">
+                        <h4 class="form-signin-heading">Enter your bet details</h4>
+                        <div class="form-group">
+                            <input type="number" name="stake" class="form-control" placeholder="Stake" value="<%= @stake %>" step="any" required autofocus>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="back" class="form-control" placeholder="Back Odds" value="<%= @back %>" step="any" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="number" name="lay" class="form-control" placeholder="Lay Odds" value="<%= @lay %>" step="any" required>
+                        </div>
                         <button class="btn btn-lg btn-primary btn-block" data-target="#results" type="submit">Calculate</button>
-                      </form>
+                    </form>
                 </div>
                 <div class="col-xs-6 col-md-4"></div>
             </div>
             <br>
             <div class="row">
                 <div class="col-xs-6 col-md-4">
-                    Underlay
-                    <br>
-                    <label for="underLayStake">Under Lay Stake</label>
-                    <input type="number" name="underlay" class="form-control" placeholder="<%= @underlaystake %>" value="<%= @underlaystake %>">
-                    <br>
-                    <label for="loss">Under Lay Loss</label>
-                    <input type="number" name="underloss" class="form-control" placeholder="<%= @underloss %>">
-                    <br>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <h4 class="text-center">Underlay</h4>
+                            <label for="layStake" class="control-label col-xs-4">Lay Stake</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="underlay" class="form-control" placeholder="<%= @underlaystake %>" disabled>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="underloss" class="control-label col-xs-4">Loss</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="underloss" class="form-control" placeholder="<%= @underloss %>" disabled>
+                                </div>
+                            </div>    
+                            <br>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-xs-6 col-md-4">
-                    <br>
-                    <label for="layStake">Lay Stake</label>
-                    <input type="number" name="lay" class="form-control" placeholder="<%= @laystake %>" value="<%= @laystake %>">
-                    <br>
-                    <label for="loss">Loss</label>
-                    <input type="number" name="loss" class="form-control" placeholder="<%= @loss %>">
-                    <br>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <h4 class="text-center">Standard</h4>
+                            <label for="layStake" class="control-label col-xs-4">Lay Stake</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="lay" class="form-control" placeholder="<%= @laystake %>" disabled>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="loss" class="control-label col-xs-4">Loss</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="loss" class="form-control" placeholder="<%= @loss %>" disabled>
+                                </div>
+                            </div>    
+                            <br>
+                        </div>
+                    </form>
                 </div>
                 <div class="col-xs-6 col-md-4">
-                    Overlay
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <h4 class="text-center">Overlay</h4>
+                            <label for="overlayStake" class="control-label col-xs-4">Lay Stake</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="overlay" class="form-control" placeholder="<%= @overlaystake %>" disabled>
+                                </div>
+                            </div>
+                            <br>
+                            <br>
+                            <label for="overloss" class="control-label col-xs-4">Loss</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="overloss" class="form-control" placeholder="<%= @overloss %>" disabled>
+                                </div>
+                            </div>    
+                            <br>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </body>
-    <script>
-        $(document).ready(function(){
-            /* Button which shows and hides div with a id of "post-details" */
-            $( ".toggle-visibility" ).click(function() {
-              
-              var target_selector = $(this).attr('data-target');
-              var $target = $( target_selector );
-              
-              if ($target.is(':hidden'))
-              {
-                $target.show();
-              }
-              else
-              {
-              	$target.hide();
-              }
-            });
-        });
-    </script>
 </html>
