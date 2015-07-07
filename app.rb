@@ -12,14 +12,13 @@ def calc_odds(back_odds, back_stake, lay_odds)
     lay_search = true
     ul_search = true
     ol_search = true
-    i = 0
     
     #loop until the back and lay results are equalised
     while lay_search || ul_search || ol_search do
         bw = back_wins(back_odds, back_stake, lay_stake, lay_odds)
         lw = lay_wins(back_stake, lay_stake)
         
-        puts 'ls - ' + lay_stake.to_s + ' bw - ' + bw.to_s + ' ---- lw ' + lw.to_s
+        #puts 'ls - ' + lay_stake.to_s + ' bw - ' + bw.to_s + ' ---- lw ' + lw.to_s
         
         if (bw <= 0 || bw == 0) && ul_search
             result_hash['underlaystake'] = lay_stake.round(2)
@@ -43,12 +42,6 @@ def calc_odds(back_odds, back_stake, lay_odds)
             ol_search = false
         end
         
-        i += 1
-        if i == 100
-            ol_search = false
-            lay_search = false
-            ul_search = false
-        end    
             
         #increase the stake by a penny
         lay_stake = lay_stake + 0.01
@@ -81,12 +74,12 @@ end
 
 #format the currency
 def currency_format(number)
-  if number < 0
-    puts number
-    return "-£%.2f" % (number * -1).to_f 
-  else
-    return '£' + sprintf("%.02f", number)   
-  end      
+#   if number < 0
+#     return "-£%.2f" % (number * -1).to_f 
+#   else
+#     return '£' + sprintf("%.02f", number)   
+#   end     
+    number
 end    
 
 get '/' do
