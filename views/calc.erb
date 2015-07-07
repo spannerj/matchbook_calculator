@@ -50,14 +50,22 @@
                             </div>
                             <br>
                             <br>
-                            <label for="underloss" class="control-label col-xs-4">Loss</label>
+                            <label for="underlosswin" class="control-label col-xs-4">Loss if win</label>
                             <div class="col-xs-8">
                                 <div class="input-group">
                                     <span class="input-group-addon">£</span>
-                                    <input type="number" name="underloss" class="form-control" placeholder="<%= @underloss %>" disabled>
+                                    <input type="number" name="underlosswin" class="form-control" placeholder="<%= @underlosswin %>" disabled>
                                 </div>
                             </div>    
                             <br>
+                            <br>
+                            <label for="underlosslose" class="control-label col-xs-4">Loss if lose</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="underlosslose" class="form-control" placeholder="<%= @underlosslose %>" disabled>
+                                </div>
+                            </div> 
                         </div>
                     </form>
                 </div>
@@ -80,7 +88,16 @@
                                     <span class="input-group-addon">£</span>
                                     <input type="number" name="loss" class="form-control" placeholder="<%= @loss %>" disabled>
                                 </div>
-                            </div>    
+                            </div>   
+                            <br>
+                            <br>
+                            <label for="losslose" class="control-label col-xs-4">Loss if lose</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="losslose" class="form-control" placeholder="<%= @lay_loss %>" disabled>
+                                </div>
+                            </div> 
                             <br>
                         </div>
                     </form>
@@ -106,6 +123,14 @@
                                 </div>
                             </div>    
                             <br>
+                            <br>
+                            <label for="overlosslose" class="control-label col-xs-4">Loss if lose</label>
+                            <div class="col-xs-8">
+                                <div class="input-group">
+                                    <span class="input-group-addon">£</span>
+                                    <input type="number" name="overlosslose" class="form-control" placeholder="<%= @pverlosslose %>" disabled>
+                                </div>
+                            </div> 
                         </div>
                     </form>
                 </div>

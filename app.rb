@@ -5,6 +5,8 @@ def calc_odds(back_odds, back_stake, lay_odds)
 
     result_hash = {}
     
+    #### work out standard lay
+    
     # start with a penny lay stake
     lay_stake = 0.01
     cont = true
@@ -19,13 +21,19 @@ def calc_odds(back_odds, back_stake, lay_odds)
             #increase the stake by a penny
             lay_stake = lay_stake + 0.01
         else
-            #close match found so break the loop
             cont = false
         end
     end
 
     result_hash['stake'] = lay_stake.round(2)
     result_hash['cost'] = bw
+    result_hash['lay_cost'] = lw
+    
+    
+    #### work out underlay
+    
+    # result_hash['underlaystake'] = back_stake
+    # result_hash['underlosslose'] = 
     
     result_hash
 end
@@ -33,22 +41,24 @@ end
 #calculate the result if the back bet wins
 def back_wins(back_odds, back_stake, lay_stake, lay_odds)
     
-    back_win = back_odds * back_stake
+    back_return = back_stake * back_odds
     
-    if back_win - back_stake < back_stake
-        com = back_win * 0.0115 
+    back_profit = back_return - back_stake
+    
+    lay_liability = lay_stake * (lay_odds - 1)
+    
+    if lay_odds < 2.0
+        commision = (lay_liability * 0.0115)
     else
-        com = back_stake * 0.0115
-    end
-
-    back_profit = back_win - back_stake
-    
-    (back_profit - ((lay_stake * lay_odds) - lay_stake) - com).round(2)  
+        commision = (lay_stake * 0.0115)
+    end    
+        
+    (back_profit - commision - lay_liability).round(2)    
 end
 
 #calculate the result if the lay wins
 def lay_wins(back_stake, lay_stake)
-    (lay_stake - back_stake - (lay_stake * 0.0115)).round(2)
+    (lay_stake - (lay_stake * 0.0115) - back_stake).round(2)
 end
 
 #format the currency
@@ -66,23 +76,12 @@ get '/' do
   @lay = params[:lay]
   if !params[:stake].nil? & !params[:back].nil? & !params[:lay].nil?
       res_hash = calc_odds( @back.to_f, @stake.to_f, @lay.to_f )
-      
-    #   if res_hash['cost'] < 0
-    #     @loss = "-£%.2f" % (res_hash['cost'] * -1).to_f 
-    #   else
-    #     @loss = '£' + sprintf("%.02f", res_hash['cost'])   
-    #   end    
+  
       @loss = currency_format(res_hash['cost'])
-      
-    #   if res_hash['undercost'] < 0
-    #     @underloss = "-£%.2f" % (res_hash['undercost'] * -1).to_f 
-    #   else
-    #     @underloss = '£' + sprintf("%.02f", res_hash['undercost']) 
-    #   end 
-      
-      @laystake = '£' + sprintf("%.2f", res_hash['stake'])
-      #@underlaystake = '£' + sprintf("%.2f", res_hash['underlaystake'])
+      @laystake = currency_format(res_hash['stake'])
+      @lay_loss = currency_format(res_hash['lay_cost'])
+      #@underlaystake = currency_format(res_hash['underlaystake'])
   end
-  puts @laystake
+
   erb :calc
 end
